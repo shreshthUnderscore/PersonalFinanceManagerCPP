@@ -12,6 +12,7 @@ void forgot();
 void addExpense();
 void addIncome();
 void viewTransactions();
+void viewBalance();
 doublyLinkedList<int> userTransactions;
 
 int main()
@@ -41,9 +42,9 @@ int main()
         break;
     case 4:
         cout << "Thank you.\n";
-        break;
+        return 0;
     default:
-        system("cls");
+        system("clear");
         cout << "Please select from the options given above.\n" << endl;
         main();
     }
@@ -53,12 +54,13 @@ void mainScreen()
 {
     int userChoice;
 
-    cout << "_______________________________________________________________\n\n";
-    cout << "                Welcome to Login Page                    \n\n";
-    cout << "___________________________________Menu_________________________\n\n";
+    cout << "________________________________________________________________\n\n";
+    cout << "                   Welcome to Finance Manager                   \n\n";
+    cout << "_____________________________Menu_______________________________\n\n";
     cout << "|  Press 1 to Add Expense                 |\n";
     cout << "|  Press 2 to Add Income                  |\n";
     cout << "|  Press 3 to View All Transactions       |\n";
+    cout << "|  Press 4 to Show Balance                |\n";
     cout << "|  Press 4 to EXIT                        |\n";
     cout << "\nPlease enter your choice: ";
 
@@ -76,10 +78,13 @@ void mainScreen()
         viewTransactions();
         break;
     case 4:
-        cout << "Thank you.\n";
+        viewBalance();
         break;
+    case 5:
+        main();
+        break;    
     default:
-        system("cls");
+        system("clear");
         cout << "Please select from the options given above.\n" << endl;
         main();
     }
@@ -89,7 +94,7 @@ void login()
 {
     int flag;
     string userID, userPassword, fileUserID, fileUserPassword;
-    system("cls");
+    system("clear");
 
     cout << "Please enter username and password:\n";
     cout << "USERNAME: ";
@@ -104,7 +109,7 @@ void login()
         if (fileUserID == userID && fileUserPassword == userPassword)
         {
             flag = 1;
-            system("cls");
+            system("clear");
         }
     }
 
@@ -112,7 +117,7 @@ void login()
 
     if (flag == 1)
     {
-        cout << userID << " \nYour login is successful.\nThanks for logging in!\n";
+        cout << " \nYour login is successful.\nThanks for logging in!\n";
         mainScreen();
     }
     else
@@ -125,7 +130,7 @@ void login()
 void registration()
 {
     string userID, userPassword, rpass;
-    system("cls");
+    system("clear");
 
     cout << "Enter the username: ";
     cin >> userID;
@@ -136,7 +141,7 @@ void registration()
 
     writeObject << userID << ' ' << userPassword << endl;
 
-    system("cls");
+    system("clear");
 
     cout << "\nRegistration is successful.\n";
 
@@ -148,7 +153,7 @@ void forgot()
 {
     int userChoice;
 
-    system("cls");
+    system("clear");
 
     cout << "Forgot password? No worries.\n";
     cout << "Press 1 to search your password by username.\n";
@@ -200,17 +205,17 @@ void addExpense()
 {
     string expenseTitle;
     int expenseAmount;
-    system("cls");
+    system("clear");
 
     cout << "Enter details of Expense:\n";
-    cout << "Enter expense title: ";
+    cout << "\nEnter expense title: ";
     cin.ignore();
     getline(cin, expenseTitle);
     cout << "Enter expense amount: ";
     cin >> expenseAmount;
 
     userTransactions.insertAtEnd(expenseAmount, expenseTitle, "EXPENSE");
-    cout << "EXPENSE ADDED SUCCESSFULLY.\n\n";
+    cout << "\nEXPENSE ADDED SUCCESSFULLY.\n\n";
 
     int userChoice;
 
@@ -225,10 +230,11 @@ void addExpense()
         addExpense();
         break;
     case 2:
+        system("clear");
         mainScreen();
         break;
     default:
-        system("cls");
+        system("clear");
         cout << "Invalid option. Exiting...\n" << endl;
         mainScreen();
         break;
@@ -239,17 +245,17 @@ void addIncome()
 {
     string incomeTitle;
     int incomeAmount;
-    system("cls");
+    system("clear");
 
     cout << "Enter details of Income:\n";
-    cout << "Enter income title: ";
+    cout << "\nEnter income title: ";
     cin.ignore();
     getline(cin, incomeTitle);
     cout << "Enter income amount: ";
     cin >> incomeAmount;
 
     userTransactions.insertAtEnd(incomeAmount, incomeTitle, "INCOME");
-    cout << "INCOME ADDED SUCCESSFULLY.\n\n";
+    cout << "\nINCOME ADDED SUCCESSFULLY.\n\n";
 
     int userChoice;
 
@@ -264,10 +270,11 @@ void addIncome()
         addIncome();
         break;
     case 2:
+        system("clear");
         mainScreen();
         break;
     default:
-        system("cls");
+        system("clear");
         cout << "Invalid option. Exiting...\n" << endl;
         mainScreen();
     }
@@ -275,5 +282,20 @@ void addIncome()
 
 void viewTransactions()
 {
+    system("clear");
     userTransactions.printList();
+    mainScreen();
+}
+
+void viewBalance()
+{
+    system("clear");
+    userTransactions.sum();
+    mainScreen();
+}
+
+void searchTransaction()
+{
+    userTransactions.search();
+    mainScreen();
 }
