@@ -58,26 +58,6 @@ class doublyLinkedList
             return size==0;
         }
 
-        void insertAtStart(const T& data, std::string title, std::string type)
-        {
-            if(isEmpty())
-            {
-                head = new NODE<T>(data, title, type);
-                tail = head;
-                size++;
-            }
-            else
-            {
-                NODE<T>* newNode = new NODE<T>(data, title, type);
-
-                newNode->next = head;
-                head->prev = newNode;
-                head = newNode;
-
-                size++;
-            }
-        }
-
         void insertAtEnd(const T data, std::string title, const std::string type)
         {
             if(isEmpty())
@@ -97,22 +77,6 @@ class doublyLinkedList
                 size++;
             }
 
-        }
-
-        void insertAtNth(const T data, std::string title, std::string type, int position)
-        {
-            if(position == 1)
-            {
-                insertAtStart(data, title, type);
-            }
-            else if(position == size+1)
-            {
-                insertAtEnd(data, title, type);
-            }
-            else
-            {
-                
-            }
         }
 
         void printList()
@@ -187,11 +151,11 @@ class doublyLinkedList
             {
                 if(trav->type == "EXPENSE")
                 {
-                    sum -= trav->data;
+                    sum = sum - trav->data;
                     trav = trav->next;
                 }else
                 {
-                    sum += trav->data;
+                    sum = sum + trav->data;
                     trav = trav->next;
                 }
             }
@@ -234,6 +198,10 @@ class doublyLinkedList
             }
             std::cout << '\n';
         }
+
+
+
+
 
 
 };

@@ -18,9 +18,9 @@ doublyLinkedList<int> userTransactions;
 int main()
 {
     int choice;
-    cout << "_______________________________________________________________\n\n";
-    cout << "                Welcome to Login Page                    \n\n";
-    cout << "___________________________________Menu_________________________\n\n";
+    cout << "________________________________________________________________\n\n";
+    cout << "                      Welcome to Login Page                     \n\n";
+    cout << "______________________________MENU______________________________\n\n";
     cout << "|  Press 1 to LOGIN                       |\n";
     cout << "|  Press 2 to REGISTER                    |\n";
     cout << "|  Press 3 IF YOU FORGOT YOUR PASSWORD    |\n";
@@ -42,7 +42,7 @@ int main()
         break;
     case 4:
         cout << "Thank you.\n";
-        return 0;
+        break;
     default:
         system("clear");
         cout << "Please select from the options given above.\n" << endl;
@@ -61,7 +61,7 @@ void mainScreen()
     cout << "|  Press 2 to Add Income                  |\n";
     cout << "|  Press 3 to View All Transactions       |\n";
     cout << "|  Press 4 to Show Balance                |\n";
-    cout << "|  Press 4 to EXIT                        |\n";
+    cout << "|  Press 5 to EXIT                        |\n";
     cout << "\nPlease enter your choice: ";
 
     cin >> userChoice;
@@ -81,6 +81,7 @@ void mainScreen()
         viewBalance();
         break;
     case 5:
+        system("clear");
         main();
         break;    
     default:
@@ -175,29 +176,35 @@ void forgot()
             if (userID == fileUserID)
             {
                 count = 1;
+                break;
             }
         }
-        readObject.close();
+
         if (count == 1)
         {
             cout << "\nYour account is found.\n";
             cout << "Your password is: " << fileUserPassword << "\n";
+            main();
         }
         else
         {
             cout << "\nSorry! Your account is not found!\n";
             main();
         }
+        break;
+        readObject.close();
     }
 
     case 2:
     {
         main();
+        break;
     }
 
     default:
         cout << "Wrong choice! Please try again.\n";
         forgot();
+        break;
     }
 }
 
